@@ -1,0 +1,15 @@
+# node.js
+#
+# VERSION               0.0.1
+
+FROM      ubuntu:12.10
+MAINTAINER David Coon "dcoon@davidcoon.org"
+
+# make sure the package repository is up to date
+RUN apt-get update && apt-get upgrade
+RUN apt-get install -y wget openjdk-7-jre-headless && apt-get clean
+# Install elasticsearch
+RUN cd /home && wget --no-check-certificate https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.5.tar.gz && tar -zxf elasticsearch-0.90.5.tar.gz
+EXPOSE 9300
+#ENTRYPOINT /home/elasticsearch-0.90.5/bin/elasticsearch
+CMD /home/elasticsearch-0.90.5/bin/elasticsearch -f
