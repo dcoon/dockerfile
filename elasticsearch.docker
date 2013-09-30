@@ -11,5 +11,6 @@ RUN apt-get install -y wget openjdk-7-jre-headless && apt-get clean
 # Install elasticsearch
 RUN cd /home && wget --no-check-certificate https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.5.tar.gz && tar -zxf elasticsearch-0.90.5.tar.gz
 EXPOSE 9300
-#ENTRYPOINT /home/elasticsearch-0.90.5/bin/elasticsearch
-CMD /home/elasticsearch-0.90.5/bin/elasticsearch -f
+EXPOSE 9200
+CMD ["/home/elasticsearch-0.90.5/bin/elasticsearch","-f"]
+
