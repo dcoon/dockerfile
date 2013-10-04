@@ -5,6 +5,7 @@
 FROM      dcoon/devel-base
 MAINTAINER David Coon "dcoon@davidcoon.org"
 
+RUN apt-get install curl
 # Install nvm
 RUN wget -O- https://raw.github.com/creationix/nvm/master/install.sh | sh
 
