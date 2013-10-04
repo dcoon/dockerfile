@@ -1,0 +1,11 @@
+# node.js
+#
+# VERSION               0.0.1
+
+FROM      dcoon/devel-base
+MAINTAINER David Coon "dcoon@davidcoon.org"
+
+# Install nvm
+RUN wget -O- https://raw.github.com/creationix/nvm/master/install.sh | sh
+
+
