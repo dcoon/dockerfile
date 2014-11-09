@@ -11,8 +11,11 @@ RUN apt-get update && apt-get clean
 # install samba
 RUN apt-get install -y samba
 
+ADD watchprocess.sh /usr/sbin/watchprocess
+ADD startsamba.sh /usr/sbin/startsamba
+
 VOLUME /var/lib/samba
 VOLUME /var/log/samba
 VOLUME /etc
 
-
+CMD startsamba
