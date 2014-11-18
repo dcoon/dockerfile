@@ -1,0 +1,15 @@
+[Unit]
+Description=Samba Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker kill samba
+ExecStartPre=/usr/bin/docker rm samba
+ExecStart=/usr/bin/docker run --name samba -p 135:135 -p 137:137 -p 138:138 -p 139:139 -p 445:445 --volumes-from sambadata -v /mnt/home/:/home dcoon/samba
+ExecStop=/usr/bin/docker stop samba
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
