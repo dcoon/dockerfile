@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -e
+# set -e
 
 nmbd
-smbd
-watchprocess smbd nmbd
+smbd -FS
+#watchprocess smbd nmbd
