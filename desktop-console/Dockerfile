@@ -24,6 +24,23 @@ RUN mkdir /var/run/sshd
 # add core user to make editing files on coreos easier
 RUN  sudo groupadd -g 500 core
 
+# Usage
+#
+## setup persistant users and home dir
+# docker run -i -t --name <username-home> desktop-console /bin/bash
+# useradd -m -U -G sudo,tty,core <username>
+# exit
+#
+# then
+# docker run -i -t --volumes-from <username-home> desktop-console /bin/bash
+# su <username>
+#
+# or
+# docker run -i -t -p 2222:22 --volumes-from <username-home> desktop-console
+#
+# sshd will listen on host port 2222 
+#
+
 # create user dcoon
 RUN useradd -m -s /bin/bash -U -G sudo,tty,core dcoon
 RUN ln -s /usr/local/share/nano/nanorc.nanorc /home/dcoon/.nanorc
