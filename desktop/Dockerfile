@@ -9,11 +9,15 @@ MAINTAINER David Coon "dcoon@davidcoon.org"
 RUN apt-get update
 
 # install desktop
-RUN apt-get install -y xpra rox-filer openssh-server xserver-xephyr xdm fluxbox xvfb
+RUN apt-get install -y xpra openssh-server xvfb lxterminal software-properties-common screen nano
 
-RUN useradd -m dcoon
+# install Atom editor
+RUN add-apt-repository ppa:webupd8team/atom ; apt-get update ; apt-get -y install atom
+
+RUN mkdir /var/run/sshd
 
 VOLUME /etc
+VOLUME /home
 
 EXPOSE 22
-CMD ["sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D"]
