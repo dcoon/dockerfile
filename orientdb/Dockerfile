@@ -7,25 +7,18 @@ MAINTAINER David Coon "dcoon@davidcoon.org"
 
 RUN apt-get install -y wget
 
-# install logstash
+# create orientdb user
 RUN useradd -m orientdb
 
 WORKDIR /home/orientdb
 
 RUN wget -O orientdb.tar.gz 'http://www.orientechnologies.com/download.php?file=orientdb-community-2.0-M2.tar.gz&os=linux'
-
 #RUN wget -O orientdb.tar.gz 'http://www.orientechnologies.com/download.php?file=orientdb-community-1.7.10.tar.gz&os=linux'
 
-
-
-
-RUN tar zxvf *.tar.gz
-
-#ADD logstash.conf /etc/logstash/
-
-#CMD /home/logstash/logstash-1.4.2/bin/logstash -f /etc/logstash/logstash.conf
+RUN tar zxvf orientdb.tar.gz
 
 #VOLUME /var/log/logstash
 #VOLUME /etc/logstash
+#CMD ["/usr/sbin/sshd", "-D"]
 
 EXPOSE 2424 2480

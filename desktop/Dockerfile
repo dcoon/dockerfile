@@ -9,10 +9,13 @@ MAINTAINER David Coon "dcoon@davidcoon.org"
 RUN apt-get update
 
 # install desktop
-RUN apt-get install -y xpra openssh-server xvfb lxterminal software-properties-common screen nano
+RUN apt-get install -y xpra openssh-server xvfb lxterminal
+
+# install devel tools
+RUN apt-get install -y screen nano
 
 # install Atom editor
-RUN add-apt-repository ppa:webupd8team/atom ; apt-get update ; apt-get -y install atom
+#RUN apt-get -y install software-properties-common ; add-apt-repository ppa:webupd8team/atom ; apt-get update ; apt-get -y install atom
 
 RUN mkdir /var/run/sshd
 
