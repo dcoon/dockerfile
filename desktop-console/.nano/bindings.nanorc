@@ -1,0 +1,7 @@
+bind ^Q exit main
+bind ^Z undo main
+bind ^X cut main
+bind ^V uncut main
+bind ^S writeout main
+bind ^F whereis all
+bind ^H searchagain all
