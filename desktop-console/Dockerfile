@@ -9,11 +9,11 @@ MAINTAINER David Coon "dcoon@davidcoon.org"
 RUN apt-get update
 
 # install devel tools
-RUN apt-get install -y screen nano make git
+RUN apt-get install -y screen nano make git curl wget
 
 # update nanorc syntax files
 RUN cd /tmp ; git clone https://github.com/nanorc/nanorc.git ; cd nanorc ; make install-global
-ADD .nano/* /usr/local/share/nano/
+ADD nano /usr/local/share/nano/
 
 # allow screen access to tty after su
 #RUN chown :tty /dev/console ; chmod g+rw /dev/console
