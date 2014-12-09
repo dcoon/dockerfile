@@ -46,7 +46,7 @@ RUN useradd -m -s /bin/bash -U -G sudo,tty,core dcoon
 RUN ln -s /usr/local/share/nano/nanorc.nanorc /home/dcoon/.nanorc
 
 VOLUME /etc
-VOLUME /home
+#VOLUME /home
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
