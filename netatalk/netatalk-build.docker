@@ -1,0 +1,31 @@
+# netatalk.docker
+#
+# VERSION               0.0.1
+
+FROM      ubuntu:14.10
+MAINTAINER David Coon "dcoon@davidcoon.org"
+
+# make sure the package repository is up to date
+RUN apt-get update
+
+# install depends
+#RUN apt-get install -y build-essential pkg-config checkinstall git-core avahi-daemon libavahi-client-dev libdb5.1-dev db-util db5.1-util libgcrypt11 libgcrypt11-dev wget
+
+RUN apt-get install -y build-essential libevent-dev libssl-dev libgcrypt11-dev libkrb5-dev libpam0g-dev libwrap0-dev libdb-dev libtdb-dev libmysqlclient-dev libavahi-client-dev libacl1-dev libldap2-dev libcrack2-dev systemtap-sdt-dev libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev tracker libtracker-sparql-1.0-dev libtracker-miner-1.0-dev
+
+RUN apt-get install -y wget avahi-daemon
+
+WORKDIR /tmp 
+RUN wget -O netatalk.tar.bz http://sourceforge.net/projects/netatalk/files/latest/download?source=files ; tar -jxvf netatalk.tar.bz 
+RUN cd netatalk-* ; ./configure --with-init-style=debian-sysv --without-libevent --without-tdb --with-cracklib --enable-krbV-uam --with-pam-confdir=/etc/pam.d ;  make -j ; make install
+
+RUN useradd -m timemachine
+
+VOLUME /mnt/data
+VOLUME /etc
+
+EXPOSE 548
+EXPOSE 5353
+EXPOSE 41473/u
+
+#CMD ["/usr/sbin/sshd", "-D"]
