@@ -175,6 +175,6 @@
 
 # By default all users have access to their home directories.
 #~/			"Home Directory"
-/mnt/timemachine "Time Machine" cnidscheme:dbd options:usedots,upriv,tm,volsizelimit=100000 allow:@timemachine
+/mnt/timemachine "Time Machine" cnidscheme:dbd options:usedots,upriv,tm volsizelimit:100000 allow:@timemachine
 
 # End of File
