@@ -25,6 +25,9 @@ RUN chmod u+x /usr/sbin/watchprocess
 # turn off dbus support in avahi
 RUN cd /etc/avahi/ ; mv avahi-daemon.conf avahi-daemon.conf.original ; sed  's/.*enable-dbus=.*/enable-dbus=false/g' /etc/avahi/avahi-daemon.conf.original > /etc/avahi/avahi-daemon.conf
 
+# redirect logs to stdout
+RUN ln -sf /dev/stdout /var/log/afpd.log
+
 VOLUME /etc/avahi
 VOLUME /etc/netatalk
 
