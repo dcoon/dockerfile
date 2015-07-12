@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker kill netatalk
 ExecStartPre=/usr/bin/docker rm netatalk
-ExecStart=/usr/bin/docker run -d -p 548:548 -p 5353:5353 --name netatalk --volumes-from netatalk-data dcoon/netatalk
+ExecStart=/usr/bin/docker run -d -p 548:548 -p 4700:4700 -p 5353:5353/udp  --name netatalk --volumes-from netatalkdata --volumes-from users -v /mnt/home/:/home -v /mnt/backup:/mnt/backup dcoon/netatalk
 ExecStop=/usr/bin/docker stop netatalk
 Restart=on-failure
 

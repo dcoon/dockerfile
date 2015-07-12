@@ -17,10 +17,8 @@ RUN cd netatalk-3.1.7 ; ./configure --prefix=/usr --sysconfdir=/etc/netatalk ; m
 
 # add default netatalk configuration
 ADD *.conf /etc/netatalk/
-ADD ./startnetatalk /usr/sbin/
-RUN chmod u+x /usr/sbin/startnetatalk
-ADD https://github.com/dcoon/dockerfile/raw/master/util/watchprocess /usr/sbin/
-RUN chmod u+x /usr/sbin/watchprocess
+ADD startnetatalk.sh /usr/sbin/
+ADD https://github.com/dcoon/dockerfile/raw/master/util/watchprocess.sh /usr/sbin/
 
 # turn off dbus support in avahi
 RUN cd /etc/avahi/ ; mv avahi-daemon.conf avahi-daemon.conf.original ; sed  's/.*enable-dbus=.*/enable-dbus=false/g' /etc/avahi/avahi-daemon.conf.original > /etc/avahi/avahi-daemon.conf
@@ -32,4 +30,4 @@ EXPOSE 548
 EXPOSE 5353/udp
 EXPOSE 4700
 
-ENTRYPOINT ["/usr/sbin/startnetatalk"]
+ENTRYPOINT ["/usr/sbin/startnetatalk.sh"]
