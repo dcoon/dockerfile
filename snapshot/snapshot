@@ -1,6 +1,0 @@
-
-#!/bin/bash
-
-btrfs-snap -r -b /mnt/backup /mnt/data hourly 24 
-
-

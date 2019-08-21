@@ -1,0 +1,12 @@
+version: '2'
+services:
+  rsyncd:
+    container_name: rsyncd
+    image: dcoon/rsyncd
+    ports:
+      - "873:873"
+    volumes:
+      - /mnt/library:/share
+      - /home/dcoon/projects/nas/rsyncd/rsyncd.conf:/etc/rsyncd.conf
+      - /home/dcoon/projects/nas/rsyncd/rsyncd.secrets:/etc/rsyncd.secrets
+    restart: always

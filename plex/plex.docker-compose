@@ -1,0 +1,17 @@
+version: '2'
+services:
+  plex:
+    container_name: plex
+    image: lsioarmhf/plex
+    ports:
+      - 32400:32400
+    restart: unless-stopped
+    environment:
+      - PLEX_CLAIM=claim-V1V7uFx-58Li21MGASKa
+      - PUID=1000
+      - PGID=1000
+    network_mode: host
+    volumes:
+      - /mnt/library/Plex/config:/config
+      - /mnt/library/Plex/transcode:/transcode
+      - /mnt/library:/library
